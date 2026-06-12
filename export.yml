@@ -15,5 +15,5 @@ jobs:
       - run: pip install requests
       - run: python .github/scripts/export.py
         env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          FIGMA_TOKEN: ${{ figd_aD9AKZrWOPSSjPvA_GM8GGXBZhrLPFDyFSi_uoQL }}
+          GH_TOKEN: ${{ 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 }}
