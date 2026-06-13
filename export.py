@@ -4,8 +4,8 @@ FILE_KEY      = 'eVEXECqP4Zmmz88uxhn836'
 GITHUB_USER   = 'rthomazi'
 GITHUB_REPO   = 'copa2026'
 GITHUB_BRANCH = 'main'
-FIGMA_TOKEN   = os.environ['figd_aD9AKZrWOPSSjPvA_GM8GGXBZhrLPFDyFSi_uoQL']
-GITHUB_TOKEN  = os.environ['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']
+FIGMA_TOKEN  = os.environ['FIGMA_TOKEN']
+GITHUB_TOKEN = os.environ['GH_TOKEN']
 
 CANAL_FRAMES = {
     'A':'787:3979','B':'787:4150','C':'787:4321','D':'787:4492',
