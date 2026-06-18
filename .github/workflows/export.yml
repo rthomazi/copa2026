@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '*/5 * * * *'
 
-concurrency:          # <-- add here
+concurrency:
   group: copa-export
   cancel-in-progress: false
 
@@ -17,8 +17,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install requests
-      - run: python .github/scripts/export.py
+      - run: python .github/scripts/export.py | tee /tmp/export_out.txt
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      - name: Job summary
+        if: always()
+        run: |
+          echo "## Copa Export Results" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat /tmp/export_out.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
