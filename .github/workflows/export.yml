@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '*/5 * * * *'
 
+concurrency:          # <-- add here
+  group: copa-export
+  cancel-in-progress: false
+
 jobs:
   export:
     runs-on: ubuntu-latest
