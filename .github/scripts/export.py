@@ -30,7 +30,8 @@ GH = {
 API = 'https://api.github.com'
 
 def export_batch(node_ids):
-    ids = ','.join(n.replace(':', '-') for n in node_ids)
+    # FIX: Keep the colons when joining for the API call
+    ids = ','.join(node_ids)
     r = requests.get(
         f'https://api.figma.com/v1/images/{FILE_KEY}',
         headers={'X-Figma-Token': FIGMA_TOKEN},
@@ -44,6 +45,7 @@ def export_batch(node_ids):
         if url:
             img = requests.get(url, timeout=120)
             img.raise_for_status()
+            # Figma returns keys with hyphens, so this correctly restores colons for your TARGETS map
             result[k.replace('-', ':')] = img.content
     return result
 
